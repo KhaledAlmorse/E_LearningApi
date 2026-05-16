@@ -57,9 +57,9 @@ router.delete(
 router.get(
   "/instructors/:status",
   isAuthenticated,
-  isAuthorized(endPoint.ListPendingInstructorApplications),
-  validation(adminSchemas.ListPendingInstructorApplicationsValidation),
-  adminServices.ListPendingInstructorApplications,
+  isAuthorized(endPoint.ListInstructorApplicationsByStatus),
+  validation(adminSchemas.ListInstructorApplicationsByStatusValidation),
+  adminServices.ListInstructorApplicationsByStatus,
 );
 
 router.patch(

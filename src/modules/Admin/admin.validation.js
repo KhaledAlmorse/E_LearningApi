@@ -2,7 +2,7 @@ import joi from "joi";
 import { isValidObjectId } from "../../middlware/validation.js";
 import { userRoles } from "../../DB/models/user.model.js";
 
-export const ListPendingInstructorApplicationsValidation = joi
+export const ListInstructorApplicationsByStatusValidation = joi
   .object({
     status: joi
       .string()

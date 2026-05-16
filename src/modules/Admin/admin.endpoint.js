@@ -8,7 +8,7 @@ export const endPoint = {
   freezeUserById: [userRoles.ADMIN],
   updateUserRole: [userRoles.ADMIN],
   DeleteUserById: [userRoles.ADMIN],
-  ListPendingInstructorApplications: [userRoles.ADMIN],
+  ListInstructorApplicationsByStatus: [userRoles.ADMIN],
   ApproveInstructorApplication: [userRoles.ADMIN],
   RejectInstructorApplication: [userRoles.ADMIN],
 };

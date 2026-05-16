@@ -2,7 +2,7 @@ import asynchandler from "express-async-handler";
 import InstructorApplication, {
   applicationStatus,
 } from "../../DB/models/instructorApplication.model.js";
-import User from "../../DB/models/user.model.js";
+import User, { userRoles } from "../../DB/models/user.model.js";
 import { request } from "express";
 
 //* list all users for admin
@@ -111,8 +111,8 @@ export const DeleteUserById = asynchandler(async (req, res, next) => {
   });
 });
 
-//* List pending applications for instructors
-export const ListPendingInstructorApplications = asynchandler(
+//* List  applications for instructors by status for admin */
+export const ListInstructorApplicationsByStatus = asynchandler(
   async (req, res, next) => {
     const applications = await InstructorApplication.find({
       status: req.params.status || applicationStatus.PENDING,
@@ -160,6 +160,12 @@ export const ApproveInstructorApplication = asynchandler(
         new Error("Instructor application not found", { cause: 404 }),
       );
     }
+
+    const user = await User.findByIdAndUpdate(
+      application.userId._id,
+      { role: userRoles.INSTRUCTOR },
+      { new: true },
+    ).select("-password");
 
     return res.status(200).json({
       success: true,
