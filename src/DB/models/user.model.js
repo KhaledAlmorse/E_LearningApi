@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { type } from "node:os";
 
 export const userRoles = {
-  STUDENT: "student",
-  INSTRUCTOR: "instructor",
   ADMIN: "admin",
+  INSTRUCTOR: "instructor",
+  STUDENT: "student",
 };
 
 export const defulatSecure_Url =
@@ -69,6 +69,10 @@ const userSchema = new mongoose.Schema(
     profilePicture: {
       secure_url: { type: String, default: defulatSecure_Url },
       public_id: { type: String, default: defulatPublic_Id },
+    },
+    freezed: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true },

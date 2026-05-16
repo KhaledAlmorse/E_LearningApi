@@ -59,6 +59,12 @@ export const login = asyncHandler(async (req, res, next) => {
     );
   }
 
+  if (user.freezed) {
+    return next(
+      new Error("Your account is freezed, contact support", { cause: 403 }),
+    );
+  }
+
   user.isLoggedIn = true;
   user.lastLoginAt = new Date();
   await user.save();
